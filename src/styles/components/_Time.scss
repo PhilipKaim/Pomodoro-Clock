@@ -1,0 +1,15 @@
+.time {
+    border: solid white 4px;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.time__value {
+    position: relative;
+    top: 40%;
+    left: 28%;
+    color: white;
+    font-size: 5rem;
+}

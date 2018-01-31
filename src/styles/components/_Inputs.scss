@@ -1,0 +1,25 @@
+.inputs {
+    display: flex;
+}
+
+.inputs__break {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: center;
+}
+
+.inputs__break > * {
+    margin: 1rem 0;
+}
+
+.inputs__session {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: center;
+}
+
+.inputs__session > * {
+    margin: 1rem 0;
+}
