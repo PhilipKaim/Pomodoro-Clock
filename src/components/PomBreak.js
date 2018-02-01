@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PomBreak = () => (
+const PomBreak = (props) => (
     <div className='pom-break'>
-        <button>Pomodoro</button>
-        <button>Break</button>
+        <button onClick={props.startSession}>Pomodoro</button>
+        <button onClick={props.startBreak}>Break</button>
     </div>
 );
 
