@@ -1,15 +1,22 @@
-.time {
-    border: solid white 4px;
-    border-radius: 50%;
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-}
+// .time {
+//     width: 400px;
+//     height: 400px;
+//     margin: 5rem auto;
+// }
 
-.time__value {
-    position: relative;
-    top: 40%;
-    left: 28%;
-    color: white;
-    font-size: 5rem;
+// .time__value {
+//     color: white;
+//     font-size: 8rem;
+// }
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+
+    div {
+        color: white;
+        font-size: 8rem;
+    }
 }

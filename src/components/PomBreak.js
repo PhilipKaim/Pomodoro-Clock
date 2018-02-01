@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PomBreak = () => (
-    <div>
+    <div className='pom-break'>
         <button>Pomodoro</button>
         <button>Break</button>
     </div>
