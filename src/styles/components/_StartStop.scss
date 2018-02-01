@@ -6,4 +6,49 @@
     button {
         margin: 1rem 5px;
     }
+
+    .btn-green {
+        background: lighten(yellowgreen, 10%);
+        border: none;
+        padding: .8rem 1.5rem;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: inset 0px 1px 2px 0px #515151;
+        }
+    }
+
+    .btn-red {
+        background: lighten(red, 15%);
+        border: none;
+        padding: .8rem 1.5rem;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: inset 0px 1px 2px 0px #515151;
+        }
+    }
+
+    .btn-grey {
+        background: #eee;
+        border: none;
+        padding: .8rem 1.5rem;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: inset 0px 1px 2px 0px #515151;
+        }
+    }
 }

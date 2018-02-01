@@ -7,10 +7,25 @@
     flex-direction: column;
     padding: 2rem;
     align-items: center;
+
+    button {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: inset 0px 0.5px 1px 0px #515151;
+        }
+    }
 }
 
 .inputs__break > * {
     margin: 1rem 0;
+    
 }
 
 .inputs__session {
@@ -18,6 +33,20 @@
     flex-direction: column;
     padding: 2rem;
     align-items: center;
+
+    button {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: inset 0px 0.5px 1px 0px #515151;
+        }
+    }
 }
 
 .inputs__session > * {
