@@ -12,6 +12,16 @@ export default class PomodoroClock extends React.Component {
         break: 5
     }
 
+    componentDidMount() {
+        const pomButton = document.querySelector('.pom');
+
+        pomButton.classList.add('active');
+
+        this.setState(() => ({
+            time: `${this.state.session}:00`
+        }));
+    }
+
     componentDidUpdate() {
         document.title = `(${this.state.time}) Pomodoro Clock`;
     }
@@ -63,10 +73,6 @@ export default class PomodoroClock extends React.Component {
             if (this.state.time === '0:00') {
                 stopTimer();
             }
-
-            // else if (this.state.time !== '0:00') {
-                
-            // }
         }.bind(this));
 
         const interval = setInterval(handleInterval, 1000);
