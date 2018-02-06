@@ -1,0 +1,2 @@
+// on pom or break click set time
+to the session or break time but dont start timer

@@ -17,4 +17,16 @@
             box-shadow: inset 0px 1px 2px 0px #515151;
         }
     }
+
+    .pom.active {
+        background: rgba(0, 0, 200, 0.2);
+        border:white solid 1px;
+        color: white;
+    }
+
+    .break.active {
+        background: rgba(0, 0, 200, 0.2);
+        border:white solid 1px;
+        color: white;
+    }
 }
