@@ -7,7 +7,7 @@ import Time from './Time';
 
 export default class PomodoroClock extends React.Component {
     state = {
-        time: '25:00',
+        time: '0:00',
         session: 25,
         break: 5
     }
@@ -50,7 +50,7 @@ export default class PomodoroClock extends React.Component {
         const resetButton = document.querySelector('.reset');
 
         // sets countdown
-        const handleInterval = (function interval() {
+        const handleInterval = (function startTimer() {
             this.break = seconds--;
             const secondsLeft = this.break % 60;
             const mins = Math.round((this.break - secondsLeft) / 60);
@@ -63,6 +63,10 @@ export default class PomodoroClock extends React.Component {
             if (this.state.time === '0:00') {
                 stopTimer();
             }
+
+            // else if (this.state.time !== '0:00') {
+                
+            // }
         }.bind(this));
 
         const interval = setInterval(handleInterval, 1000);
@@ -72,11 +76,23 @@ export default class PomodoroClock extends React.Component {
         }
 
         const resetTimer = (function resetTimer() {
+            const pomButton = document.querySelector('.pom');
+            const breakButton = document.querySelector('.break');
+
             clearInterval(interval);
 
-            this.setState(() => ({
-                time: `${this.state.session}:00`
-            }));            
+            if (pomButton.classList.contains('active')) {
+                this.setState(() => ({
+                    time: `${this.state.session}:00`
+                }));   
+            }
+    
+            else if (breakButton.classList.contains('active')) {
+                this.setState(() => ({
+                    time: `${this.state.break}:00`
+                }));   
+            }
+         
         }.bind(this));
 
         stopButton.addEventListener('click', stopTimer);
