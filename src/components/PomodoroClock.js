@@ -10,6 +10,8 @@ export default class PomodoroClock extends React.Component {
         time: '',
         session: 25,
         break: 5,
+        start: false,
+        stop: true
     }
 
     componentDidMount() {
@@ -29,29 +31,49 @@ export default class PomodoroClock extends React.Component {
     handleIncrementSession = () => {
         this.setState((prevState) => ({
             session: prevState.session + 1,
-            time: `${this.state.session + 1}:00`
         }));
+
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${this.state.session + 1}:00`
+            }));
+        }
     }
 
     handleDecramentSession = () => {
         this.setState((prevState) => ({
             session: prevState.session - 1,
-            time: `${this.state.session - 1}:00`
         }));
+
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${this.state.session - 1}:00`
+            }));
+        }
     }
 
     handleIncrementBreak = () => {
         this.setState((prevState) => ({
             break: prevState.break + 1,
-            time: `${this.state.break + 1}:00`
         }));
+
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${this.state.break + 1}:00`
+            }));
+        }
     }
 
     handleDecramentBreak = () => {
         this.setState((prevState) => ({
-            break: prevState.break - 1,
-            time: `${this.state.break - 1}:00`
+            break: prevState.break + 1,
         }));
+
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${this.state.break + 1}:00`
+            }));
+        }
     }
 
     handleStartTimer = (seconds) => {
@@ -82,10 +104,7 @@ export default class PomodoroClock extends React.Component {
 
         const stopTimer = (function stopTimer() {
             clearInterval(interval);
-
-            console.log(this.state.time);
-            
-
+        
             this.setState(() => ({
                 start: false,
                 stop: true
