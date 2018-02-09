@@ -120,13 +120,17 @@ export default class PomodoroClock extends React.Component {
 
             if (pomButton.classList.contains('active')) {
                 this.setState(() => ({
-                    time: `${this.state.session}:00`
+                    time: `${this.state.session}:00`,
+                    stop: true,
+                    start: false
                 }));   
             }
     
             else if (breakButton.classList.contains('active')) {
                 this.setState(() => ({
-                    time: `${this.state.break}:00`
+                    time: `${this.state.break}:00`,
+                    stop: true,
+                    start: false
                 }));   
             }
          
@@ -145,9 +149,11 @@ export default class PomodoroClock extends React.Component {
 
         const sessionState = this.state.session;
 
-        this.setState(() => ({
-            time: `${sessionState}:00`
-        }));
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${sessionState}:00`
+            }));
+        }
     }
 
     handleBreakClick = () => {
@@ -159,9 +165,11 @@ export default class PomodoroClock extends React.Component {
 
         const breakState = this.state.break;
 
-        this.setState(() => ({
-            time: `${breakState}:00`
-        }));
+        if (this.state.stop === true) {
+            this.setState(() => ({
+                time: `${breakState}:00`
+            }));
+        }
     }
 
     handleStart = () => {
