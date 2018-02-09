@@ -7,9 +7,9 @@ import Time from './Time';
 
 export default class PomodoroClock extends React.Component {
     state = {
-        time: '0:00',
+        time: '',
         session: 25,
-        break: 5
+        break: 5,
     }
 
     componentDidMount() {
@@ -59,15 +59,18 @@ export default class PomodoroClock extends React.Component {
         const stopButton = document.querySelector('.stop');
         const resetButton = document.querySelector('.reset');
 
-        // sets countdown
+        // starts countdown
         const handleInterval = (function startTimer() {
             this.break = seconds--;
             const secondsLeft = this.break % 60;
             const mins = Math.round((this.break - secondsLeft) / 60);
             const hours = Math.round(mins / 60);
             const theTime = (secondsLeft < 10) ? `${mins}:0${secondsLeft}` : `${mins}:${secondsLeft}`;
+
             this.setState(() => ({
-                time: theTime
+                time: theTime,
+                start: true,
+                stop: false
             }));
 
             if (this.state.time === '0:00') {
@@ -77,9 +80,18 @@ export default class PomodoroClock extends React.Component {
 
         const interval = setInterval(handleInterval, 1000);
 
-        function stopTimer() {
+        const stopTimer = (function stopTimer() {
             clearInterval(interval);
-        }
+
+            console.log(this.state.time);
+            
+
+            this.setState(() => ({
+                start: false,
+                stop: true
+            }));
+            
+        }.bind(this));
 
         const resetTimer = (function resetTimer() {
             const pomButton = document.querySelector('.pom');
@@ -105,39 +117,51 @@ export default class PomodoroClock extends React.Component {
         resetButton.addEventListener('click', resetTimer);
     }
 
-    handleSessionStart = () => {
-        const sessionState = this.state.session;
-
-        this.setState(() => ({
-            time: `${sessionState}:00`
-        }));
-
+    handlePomClick = () => {
         const pomButton = document.querySelector('.pom');
         pomButton.classList.add('active');
 
         const breakButton = document.querySelector('.break');
         breakButton.classList.remove('active');
-    }
 
-    handleBreakStart = () => {
-        const breakState = this.state.break;
+        const sessionState = this.state.session;
 
         this.setState(() => ({
-            time: `${breakState}:00`
+            time: `${sessionState}:00`
         }));
+    }
 
+    handleBreakClick = () => {
         const breakButton = document.querySelector('.break');
         breakButton.classList.add('active');
 
         const pomButton = document.querySelector('.pom');
         pomButton.classList.remove('active');
+
+        const breakState = this.state.break;
+
+        this.setState(() => ({
+            time: `${breakState}:00`
+        }));
     }
 
     handleStart = () => {
         const pomButton = document.querySelector('.pom');
         const breakButton = document.querySelector('.break');
+
+        const time = this.state.time;
+
+        const leftOfColon = time.substr(0, time.indexOf(':'));
+        const rightOfColon = time.substr(time.indexOf(':') + 1, time.length);
+
+        if ((leftOfColon !== this.state.session && rightOfColon !== '00') || (leftOfColon !== this.state.break && rightOfColon !== '00')) {
+            const minsSeconds = leftOfColon * 60;
+            const secondsLeft = parseInt(rightOfColon);
+            const totalSeconds = minsSeconds + secondsLeft;
+            this.handleStartTimer(totalSeconds);
+        }
         
-        if (pomButton.classList.contains('active')) {
+        else if (pomButton.classList.contains('active')) {
             const sessionSeconds = this.state.session * 60;
             this.handleStartTimer(sessionSeconds);
         }
@@ -153,8 +177,8 @@ export default class PomodoroClock extends React.Component {
             <div>
                 <Header />
                 <PomBreak
-                startSession={this.handleSessionStart}
-                startBreak={this.handleBreakStart}
+                startSession={this.handlePomClick}
+                startBreak={this.handleBreakClick}
                 />
                 <Inputs
                 session={this.state.session}
