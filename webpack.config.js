@@ -20,6 +20,12 @@ module.exports = {
         'sass-loader',
       ],
     },
+    {
+      test: /\.wav$/,
+      use: [
+        'file-loader' 
+      ],
+    }
   ],
   },
   devtool: 'cheap-module-eval-source-map',

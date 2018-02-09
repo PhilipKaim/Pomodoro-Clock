@@ -1,9 +1,3 @@
-// when stoped and started again, the time needs to resume from where it left off
-
-// if timer is running and a the pom or break button is clicked, reset timer to its clicked value
-
-// when timer is running and inc and dec is clicked, don't set time to that value
-
 // when timer is up play a sound
 
 // finish styling app

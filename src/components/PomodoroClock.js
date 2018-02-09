@@ -181,6 +181,7 @@ export default class PomodoroClock extends React.Component {
         const leftOfColon = time.substr(0, time.indexOf(':'));
         const rightOfColon = time.substr(time.indexOf(':') + 1, time.length);
 
+        // gets seconds left on stopped timer, resumes timer
         if ((leftOfColon !== this.state.session && rightOfColon !== '00') || (leftOfColon !== this.state.break && rightOfColon !== '00')) {
             const minsSeconds = leftOfColon * 60;
             const secondsLeft = parseInt(rightOfColon);
