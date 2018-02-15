@@ -1,3 +1,0 @@
-// when timer is up play a sound
-
-// finish styling app

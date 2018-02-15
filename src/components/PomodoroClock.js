@@ -80,6 +80,7 @@ export default class PomodoroClock extends React.Component {
 
         const stopButton = document.querySelector('.stop');
         const resetButton = document.querySelector('.reset');
+        const startButton = document.querySelector('.start');
 
         // starts countdown
         const handleInterval = (function startTimer() {
@@ -98,6 +99,10 @@ export default class PomodoroClock extends React.Component {
             if (this.state.time === '0:00') {
                 stopTimer();
             }
+
+            if (this.state.start === true) {
+                startButton.setAttribute('disabled', 'disabled');
+            }
         }.bind(this));
 
         const interval = setInterval(handleInterval, 1000);
@@ -109,6 +114,10 @@ export default class PomodoroClock extends React.Component {
                 start: false,
                 stop: true
             }));
+
+            if (this.state.start === false) {
+                startButton.removeAttribute('disabled');
+            }
             
         }.bind(this));
 
@@ -220,6 +229,7 @@ export default class PomodoroClock extends React.Component {
                 start={this.handleStart}
                 stop={this.handleStop}
                 reset={this.handleReset}
+                disable={this.state.start}
                 />
                 <Time
                 time={this.state.time}
