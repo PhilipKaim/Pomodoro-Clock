@@ -66,12 +66,12 @@ export default class PomodoroClock extends React.Component {
 
     handleDecramentBreak = () => {
         this.setState((prevState) => ({
-            break: prevState.break + 1,
+            break: prevState.break - 1,
         }));
 
         if (this.state.stop === true) {
             this.setState(() => ({
-                time: `${this.state.break + 1}:00`
+                time: `${this.state.break - 1}:00`
             }));
         }
     }
